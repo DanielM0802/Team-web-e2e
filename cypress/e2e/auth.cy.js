@@ -1,4 +1,16 @@
 describe("Login", () => {
+	
+	it("Succesful [L-1] Successful login with verified user should redirect to home", () => {
+		
+		cy.login();
+		cy.visit("/");
+		cy.url().should(
+			"eq",
+			"http://pruebas-soft.s3-website.us-east-2.amazonaws.com/"
+		);
+
+	});
+	
 	it("[Error L-2] invalid credentials", () => {
 		cy.visit("/login", {
 			failOnStatusCode: false,

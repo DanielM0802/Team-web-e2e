@@ -33,8 +33,8 @@ Cypress.Commands.add("login", () => {
 			method: "POST",
 			url: `http://3.138.52.135:3000/auth/login`,
 			body: {
-				email: "SET_YOUR_EMAIL",
-				password: "SET_YOUR_PASSWORD",
+				email: "d.marillanca01@ufromail.cl",
+				password: "9ebXKksz",
 			},
 		})
 		.then(({ body }) => {
@@ -59,3 +59,19 @@ Cypress.Commands.add("getClubs", (token) => {
 		return body.clubs;
 	});
 });
+
+
+/**
+ * get club members from clubId
+ */
+Cypress.Commands.add("getClubMembers", (clubId, token) => {
+	return cy.request({
+	  method: "GET",
+	  url: `http://3.138.52.135:3000/clubs/${clubId}/members`,
+	  headers: {
+		Authorization: `Bearer ${token}`,
+	  },
+	}).then(({ body }) => {
+	  return body.members;
+	});
+  });
